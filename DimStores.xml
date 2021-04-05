@@ -13,7 +13,7 @@
 		<store>
 			<StoreID>2</StoreID>
 			<StoreAltID>LOC-A2</StoreAltID>
-			<StoreName>X-Mart</StoreName>
+			<StoreName>Y-Mart</StoreName>
 			<StoreLocation>Maninagar</StoreLocation>
 			<City>Ahmedabad</City>
 			<State>Guj</State>
@@ -23,7 +23,7 @@
 		<store>
 			<StoreID>3</StoreID>
 			<StoreAltID>LOC-A3</StoreAltID>
-			<StoreName>X-Mart</StoreName>
+			<StoreName>Z-Mart</StoreName>
 			<StoreLocation>Sivranjani</StoreLocation>
 			<City>Ahmedabad</City>
 			<State>Guj</State>
