@@ -17,17 +17,20 @@ class FireQuery
 			if (selected_option == 1)
 			{
 				System.out.println("************You have selected slice operation*************");
-				Slice.slice(); // calling slice method
+				//Slice.slice(); // calling slice method
+				SliceParam.slice_take_input();
 			} //slice if loop
 			else if (selected_option == 2)
 			{
 				System.out.println("****^^^^^You have selected dice operation^^^^^****");
-				Dice.dice();
+				//Dice.dice();
+				DiceParam.dice_take_input();
 			} //dice else if loop
 			else if (selected_option == 3)
 			{
 				System.out.println("****^^^^^You have selected rollup/drillup operation^^^^^****");
-				RollUp.rollUp();
+				//RollUp.rollUp();
+				RollUPParam.rollup_take_input();
 			} //rollup else if condition
 			else
 				break; //breaking from infinite while loop
@@ -46,6 +49,46 @@ class FireQuery
 		//processBuilder.command("bash", "-c", "ls -l");
 
 	//reusable method for slice, dice, rollup by passing dynamically created query
+	// parameterized firingQuery method
+	public static void firingQueryParam(String xquery, String dw_name)
+	{
+		try {
+			//storing query into the file and giving that file name in query
+			//all data warehouses are stored in separate folders with given dw_name inside xml-project folder
+			String dir_path= "/home/srinivas/IIITB/II-sem/DM/xml-project/" + dw_name;
+			String query_path= dir_path + "/current-dynamic-query.xqy";
+			File yourFile = new File(query_path);
+			yourFile.createNewFile(); // if file already exists will do nothing
+			FileWriter myWriter = new FileWriter(query_path);
+			myWriter.write(xquery); //writing dynamically generated xquery to the query-file
+			myWriter.close();
+
+			ProcessBuilder processBuilder = new ProcessBuilder();
+			//processBuilder.command("bash", "-c", "cd ; cd Downloads/SaxonHE10-3J ; java -cp saxon-he-10.3.jar net.sf.saxon.Query -q:/home/srinivas/Music/current-dynamic-query.xqy -s:/home/srinivas/Music/factProductSales.xml");
+			processBuilder.command("bash", "-c", "cd ; cd Downloads/SaxonHE10-3J ; java -cp saxon-he-10.3.jar net.sf.saxon.Query -q:"+ query_path+ " -s:"+ dir_path+ "/factProductSales.xml");
+
+			Process process = processBuilder.start();
+			StringBuilder output = new StringBuilder();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			String line;
+			//System.out.println("inside first try block");
+			while ((line = reader.readLine()) != null) {
+				output.append(line + "\n");
+			}
+
+			int exitVal = process.waitFor();
+			if (exitVal == 0) {
+				System.out.println("Success!");
+				System.out.println(output);
+				//System.exit(0);
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	} //end of firingQuery method
+
+
 	public static void firingQuery(String xquery)
 	{
 		try {
@@ -79,5 +122,6 @@ class FireQuery
 			System.out.println(e.getMessage());
 		}
 	} //end of firingQuery method
+
 
 } //end of class FireQuery
