@@ -144,7 +144,7 @@ public class DiceParam {
         xquery=xquery.substring(0, xquery.length()-4);
         xquery = xquery.concat(" return $fact"); //to return entire ProductSale element
         System.out.println(xquery);
-        FireQuery.firingQueryParam(xquery, dw_name);
+        FireQuery.firingQueryParam(xquery, dw_name, fact_table_name);
 
     } // end of diceByJoiningDim method
 
@@ -162,6 +162,6 @@ public class DiceParam {
         xquery=xquery.substring(0, xquery.length()-4);
         xquery = xquery.concat(" return $fact"); //to return entire ProductSale element
         System.out.println(xquery);
-        FireQuery.firingQueryParam(xquery, dw_name);
+        FireQuery.firingQueryParam(xquery, dw_name, fact_table_name);
     } //end of diceAloneOnFact method
 }

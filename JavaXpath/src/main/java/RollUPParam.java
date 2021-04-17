@@ -240,7 +240,7 @@ public class RollUPParam {
         xquery= xquery.concat(", \"&#xA;\")");
 
         System.out.println(xquery);
-        FireQuery.firingQueryParam(xquery, dw_name);
+        FireQuery.firingQueryParam(xquery, dw_name, fact_table_name);
     }  //end of rollupByJoiningDim method
 
 
@@ -304,7 +304,7 @@ public class RollUPParam {
         xquery= xquery.concat(", \"&#xA;\")");
 
         System.out.println(xquery);
-        FireQuery.firingQueryParam(xquery, dw_name);
+        FireQuery.firingQueryParam(xquery, dw_name, fact_table_name);
     }  //end of rollupByJoiningDimOnDimAttributes method
 
 
@@ -333,7 +333,7 @@ public class RollUPParam {
         xquery= xquery.concat(", \"&#xA;\")");
 
         System.out.println(xquery);
-        FireQuery.firingQueryParam(xquery, dw_name);
+        FireQuery.firingQueryParam(xquery, dw_name, fact_table_name);
     }  //end of rollupAloneonFact method
 
 }// end of RollUpParam class

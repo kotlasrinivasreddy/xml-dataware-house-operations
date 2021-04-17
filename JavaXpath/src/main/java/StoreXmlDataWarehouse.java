@@ -20,6 +20,7 @@ public class StoreXmlDataWarehouse
         System.out.println("Enter the name of the data warehouse");
         String dw_name= sc.next();
         try {
+            //  /home/srinivas/IIITB/II-sem/DM/xml-project  -- location where i'm sharing all data warehouse folders
             processBuilder.command("bash", "-c", "cd ; cd /home/srinivas/IIITB/II-sem/DM/xml-project ; mkdir "+dw_name);
             Process process = processBuilder.start();
             StringBuilder output = new StringBuilder();

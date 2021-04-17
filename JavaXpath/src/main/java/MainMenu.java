@@ -26,6 +26,6 @@ public class MainMenu {
                 break; // break out of while loop
         } // end of infinite while loop
 
-        System.out.println("****!!!!@@@@   TAATA BYEEE BYEEE  --  Querying XML is FUN   @@@@!!!!****");
+        System.out.println("**!!@@ TAATA BYEEE BYEEE -- Querying XML & DW operations is FUN @@!!**");
     }
 }

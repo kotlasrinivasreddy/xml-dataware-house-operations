@@ -98,7 +98,7 @@ public class SliceParam {
         xquery= xquery.concat("$fact/"+ fact_table_fk_of_selected_dim+ "=$dim/" + dim_table_pk+ " and $dim/"+ attribute_name+ operator+"\""+ value+"\"");
         xquery= xquery=xquery.concat(" return $fact");
         System.out.println(xquery);
-        FireQuery.firingQueryParam(xquery, dw_name);
+        FireQuery.firingQueryParam(xquery, dw_name, fact_table_name);
     }
 
     public static void sliceAloneOnFact(String dw_name, String fact_table_name, String fact_table_innermost_wrapper,
@@ -120,7 +120,7 @@ public class SliceParam {
 //                "string($x/deviation), \"&#xA;\")");
 
         System.out.println(xquery);
-        FireQuery.firingQueryParam(xquery, dw_name);
+        FireQuery.firingQueryParam(xquery, dw_name, fact_table_name);
 
     }
 

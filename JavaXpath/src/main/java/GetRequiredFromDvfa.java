@@ -35,6 +35,7 @@ public class GetRequiredFromDvfa {
         try
         {
             //while storing -- all data warehouses are stored inside the xml-project folder
+            //  /home/srinivas/IIITB/II-sem/DM/xml-project  -- location where i'm sharing all data warehouse folders
             String dw_path= "/home/srinivas/IIITB/II-sem/DM/xml-project"+"/"+dw_name;
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder loader = factory.newDocumentBuilder();

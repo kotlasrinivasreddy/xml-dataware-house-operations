@@ -50,11 +50,12 @@ class FireQuery
 
 	//reusable method for slice, dice, rollup by passing dynamically created query
 	// parameterized firingQuery method
-	public static void firingQueryParam(String xquery, String dw_name)
+	public static void firingQueryParam(String xquery, String dw_name, String fact_table_name)
 	{
 		try {
 			//storing query into the file and giving that file name in query
 			//all data warehouses are stored in separate folders with given dw_name inside xml-project folder
+			//  /home/srinivas/IIITB/II-sem/DM/xml-project  -- location where i'm sharing all data warehouse folders
 			String dir_path= "/home/srinivas/IIITB/II-sem/DM/xml-project/" + dw_name;
 			String query_path= dir_path + "/current-dynamic-query.xqy";
 			File yourFile = new File(query_path);
@@ -65,7 +66,7 @@ class FireQuery
 
 			ProcessBuilder processBuilder = new ProcessBuilder();
 			//processBuilder.command("bash", "-c", "cd ; cd Downloads/SaxonHE10-3J ; java -cp saxon-he-10.3.jar net.sf.saxon.Query -q:/home/srinivas/Music/current-dynamic-query.xqy -s:/home/srinivas/Music/factProductSales.xml");
-			processBuilder.command("bash", "-c", "cd ; cd Downloads/SaxonHE10-3J ; java -cp saxon-he-10.3.jar net.sf.saxon.Query -q:"+ query_path+ " -s:"+ dir_path+ "/factProductSales.xml");
+			processBuilder.command("bash", "-c", "cd ; cd Downloads/SaxonHE10-3J ; java -cp saxon-he-10.3.jar net.sf.saxon.Query -q:"+ query_path+ " -s:"+ dir_path+ "/" +fact_table_name);
 
 			Process process = processBuilder.start();
 			StringBuilder output = new StringBuilder();
