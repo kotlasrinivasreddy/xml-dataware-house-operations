@@ -3,8 +3,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.time.LocalDateTime;
+import java.time.Duration;
+
 class FireQuery
 {
+	static LocalDateTime time_before_querying, time_after_querying, time_after_print;
 	static Scanner sc = new Scanner(System.in);
 	public static void fireDynamicQuery() {
 		//System.out.println("Enter the dimension on which you want to perform slice operation");
@@ -68,7 +72,9 @@ class FireQuery
 			//processBuilder.command("bash", "-c", "cd ; cd Downloads/SaxonHE10-3J ; java -cp saxon-he-10.3.jar net.sf.saxon.Query -q:/home/srinivas/Music/current-dynamic-query.xqy -s:/home/srinivas/Music/factProductSales.xml");
 			processBuilder.command("bash", "-c", "cd ; cd Downloads/SaxonHE10-3J ; java -cp saxon-he-10.3.jar net.sf.saxon.Query -q:"+ query_path+ " -s:"+ dir_path+ "/" +fact_table_name);
 
+			time_before_querying= LocalDateTime.now();
 			Process process = processBuilder.start();
+			time_after_querying= LocalDateTime.now();
 			StringBuilder output = new StringBuilder();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			String line;
@@ -81,8 +87,16 @@ class FireQuery
 			if (exitVal == 0) {
 				System.out.println("Success!");
 				System.out.println(output);
+				time_after_print= LocalDateTime.now();
 				//System.exit(0);
 			}
+			//printing time taken for querying
+			Duration duration= Duration.between(time_before_querying, time_after_querying);
+			//System.out.println(duration.toMinutes()+" mins, "+ duration.getSeconds()+ " seconds");
+			System.out.println("time to execute query : "+ duration.toMinutes()+" mins, "+ (double)(duration.toMillis())/1000+ " seconds");
+			duration= Duration.between(time_before_querying, time_after_print);
+			System.out.println("time taken to append the output to string : "+ duration.toMinutes()+" mins, "+ (double)(duration.toMillis())/1000+ " seconds");
+
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
