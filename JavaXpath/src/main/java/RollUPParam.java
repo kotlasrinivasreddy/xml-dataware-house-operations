@@ -9,7 +9,7 @@ public class RollUPParam {
     static Scanner sc= new Scanner(System.in);
     public static void rollup_take_input() {
         //important thing here is -- we need to ask user on which attributes of fact_table he
-        //wants to apply aggregation funtions (ex:- sum() )
+        //wants to apply aggregation functions (ex:- sum() )
         //aggregation functions are applied only on numeric fields of fact_table
         System.out.println("Enter the data warehouse name on which you want to perform this operation (folder name is same as data warehouse name)");
         String dw_name = sc.next();
@@ -53,7 +53,7 @@ public class RollUPParam {
 //                System.out.println("Enter the value for " + attribute + " to perform dice");
 //                value_list.add(sc.next());
 
-                if (dvfa_parse_object.getFactTableFks().size() == 0)//as we have selected all attributes for dice
+                if (dvfa_parse_object.getFactTableFks().size() == 0)//as we have selected all attributes for grouping
                     break;
                 System.out.println("you want to input more dimension to rollup(yes or no)");
                 if (sc.next().equals("no"))
@@ -217,7 +217,7 @@ public class RollUPParam {
 //            xquery= xquery.concat("\""+ value_list.get(i)+ "\"");
 //            xquery= xquery.concat(" and ");
         }
-        xquery= xquery.substring(0, xquery.length()-5); //removing last unnecessary and
+        xquery= xquery.substring(0, xquery.length()-5); //removing last unnecessary 'and'
 
         xquery= xquery.concat(" group by ");
         String print_out="";
@@ -288,6 +288,7 @@ public class RollUPParam {
         for(int i=0;i<fact_table_groupby_attribute_list.size();i++)
         {
             String cur_attribute= dim_attribute_list.get(i);
+            //here just attribute name is $fact_attr, it's actually rolling up on dim_attributes
             xquery = xquery.concat("$fact_attr" + i + ":=" + "$dim"+i+"/" + cur_attribute + ", ");
 
             print_out=print_out.concat("\""+cur_attribute+"=\","+"$fact_attr"+ i+ ", "+ "\"&#x9;\""+", ");

@@ -158,9 +158,9 @@ public class DiceParam {
             xquery= xquery.concat("$fact/"+ attribute_list.get(i)+ operator_list.get(i)+ "\""+ value_list.get(i)+ "\"");
             xquery= xquery.concat(" and ");
         }
-        //removing unnecessary and concatenated after last attributes value
+        //removing unnecessary 'and' concatenated after last attributes value
         xquery=xquery.substring(0, xquery.length()-4);
-        xquery = xquery.concat(" return $fact"); //to return entire ProductSale element
+        xquery = xquery.concat(" return $fact"); //to return entire fact table Innermost element
         System.out.println(xquery);
         FireQuery.firingQueryParam(xquery, dw_name, fact_table_name);
     } //end of diceAloneOnFact method

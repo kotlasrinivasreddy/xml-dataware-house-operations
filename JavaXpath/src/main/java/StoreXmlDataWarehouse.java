@@ -20,7 +20,7 @@ public class StoreXmlDataWarehouse
         System.out.println("Enter the name of the data warehouse");
         String dw_name= sc.next();
         try {
-            //  /home/srinivas/IIITB/II-sem/DM/xml-project  -- location where i'm sharing all data warehouse folders
+            //  /home/srinivas/IIITB/II-sem/DM/xml-project  -- location where i'm saving all data warehouse folders
             processBuilder.command("bash", "-c", "cd ; cd /home/srinivas/IIITB/II-sem/DM/xml-project ; mkdir "+dw_name);
             Process process = processBuilder.start();
             StringBuilder output = new StringBuilder();
@@ -71,9 +71,9 @@ public class StoreXmlDataWarehouse
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder loader = factory.newDocumentBuilder();
 
-            System.out.println("before parsing the file");
+            //System.out.println("before parsing the file");
             //sometimes before even copying the file, the program is trying to access
-            //so sleep until the file is copied successfully
+            //so sleep until the file is copied successfully ------ use waitFor on process until it returns after finishing execution
             //Path path = Paths.get(dw_path+ "/"+ dvfa_name); //converting into Path type to use it in exists method
             //while(Files.exists(path)); //if the file doesn't exist infinite loop won't break;
 
@@ -93,6 +93,7 @@ public class StoreXmlDataWarehouse
                 String[] splited = text.split("\\s+");
 
 //                System.out.println("file schema path: "+ splited[1]);
+                //cp -u	update - copy when source is newer than dest
                 processBuilder.command("bash", "-c", "cd ; cp -u " + splited[1] + " " + dw_path);
                 processBuilder.start();
                 processBuilder.command("bash", "-c", "cd ; cp -u " + splited[2] + " " + dw_path);
@@ -167,7 +168,5 @@ public class StoreXmlDataWarehouse
             System.out.println(e.getMessage());
         }
     } //storeFactDim method end
-
-
 
 }

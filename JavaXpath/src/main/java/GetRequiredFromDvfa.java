@@ -11,7 +11,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.util.*;
 
 //purpose of this class is to -- given data warehouse name in xml-project to a method, load and parse the
-//dvfa file in that method, and have print methods which will return required values
+//dvfa file in that method, and have get methods which will return required values
 public class GetRequiredFromDvfa {
 
     ///static Scanner sc= new Scanner(System.in);
@@ -28,7 +28,6 @@ public class GetRequiredFromDvfa {
     ArrayList<String> all_attributes_fact_table = new ArrayList<String>();
     ArrayList<String> fact_table_fks = new ArrayList<String>();
 
-    //once this function is called with dw_name it will do
     //method to load and parse dvfa and populate all the lists to retrieve pks, fks, attributes, wrappers
     public void loadParseDvfa(String dw_name)
     {
